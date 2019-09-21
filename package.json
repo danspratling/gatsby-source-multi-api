@@ -1,15 +1,23 @@
 {
   "name": "gatsby-source-rest-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Allows multiple REST APIs to be sourced into a project and used in GraphQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir . --ignore __tests__",
+    "prepare": "cross-env NODE_ENV=production npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dan Spratling <danspratling@hotmail.co.uk>",
+  "license": "MIT",
   "dependencies": {
     "fetch-multiple": "^1.2.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-preset-minify": "^0.5.0",
+    "cross-env": "^5.2.0"
   }
 }
