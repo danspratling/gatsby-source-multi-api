@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-rest-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Allows multiple REST APIs to be sourced into a project and used in GraphQL",
   "main": "index.js",
   "scripts": {

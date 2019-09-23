@@ -19,14 +19,14 @@ exports.sourceNodes = (
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = (result, endpoint) => {
-    const nodeId = createNodeId(`umbraco-result-${result.id}`)
+    const nodeId = createNodeId(`rest-api-result-${result.id}`)
     const nodeContent = JSON.stringify(result)
     const nodeData = Object.assign({}, result, {
       id: nodeId,
       parent: null,
       children: [],
       internal: {
-        type: `UmbracoApi${customFormat(endpoint)}`,
+        type: `RestApi${customFormat(endpoint)}`,
         content: nodeContent,
         contentDigest: createContentDigest(result),
       },
