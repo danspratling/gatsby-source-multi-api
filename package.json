@@ -1,13 +1,18 @@
 {
   "name": "gatsby-source-rest-api",
-  "version": "0.1.2",
-  "description": "Allows multiple REST APIs to be sourced into a project and used in GraphQL",
+  "version": "0.2.0",
+  "description": "A Gatsby source plugin for sourcing data into your Gatsby appliction from any REST Api",
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
     "prepare": "cross-env NODE_ENV=production npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "gatsby",
+    "gatsby-source",
+    "gatsby-source-rest-api",
+    "rest-api"
+  ],
   "author": "Dan Spratling <danspratling@hotmail.co.uk>",
   "license": "MIT",
   "dependencies": {
