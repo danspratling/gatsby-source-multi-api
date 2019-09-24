@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-rest-api",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Gatsby source plugin for sourcing data into your Gatsby appliction from any REST Api",
   "main": "index.js",
   "scripts": {
