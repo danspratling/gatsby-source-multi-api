@@ -13,8 +13,8 @@
     "gatsby-source",
     "gatsby-source-plugin",
     "gatsby-source-rest-api",
-    "gatsby-rest-api-plugin"
-    "gatsby-rest-api"
+    "gatsby-rest-api-plugin",
+    "gatsby-rest-api",
     "rest-api"
   ],
   "author": "Dan Spratling <danspratling@hotmail.co.uk>",
