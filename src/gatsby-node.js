@@ -19,7 +19,19 @@ exports.sourceNodes = (
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = (result, endpoint) => {
-    const nodeId = createNodeId(`rest-api-result-${result.id}`)
+    //psuedo code
+    //by default dont change ID
+    //if(option to keep change id == true )
+    // createNodeID
+    //else 
+    // use original id
+    
+    if(changeID === true){
+      const nodeId = createNodeId(`rest-api-result-${result.id}`)
+    } else{
+      const nodeId = ${result.id}
+    }
+    
     const nodeContent = JSON.stringify(result)
     const nodeData = Object.assign({}, result, {
       id: nodeId,
@@ -49,6 +61,8 @@ exports.sourceNodes = (
         })
     )
   )
+  
+  const changeID = true;
 
-  return Promise.all(sources)
+  return Promise.all(sources, changeID)
 }
