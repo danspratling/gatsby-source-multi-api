@@ -19,7 +19,7 @@ exports.sourceNodes = (
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = (result, endpoint) => {
-    const nodeId = createNodeId(`rest-api-result-${result.id}`)
+    const nodeId = createNodeId(`${endpoint}-${result.id}`)
     const nodeContent = JSON.stringify(result)
     const nodeData = Object.assign({}, result, {
       id: nodeId,
