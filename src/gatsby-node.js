@@ -1,4 +1,4 @@
-const fetch = require("node-fetch")
+const fetch = require('node-fetch')
 exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   configOptions
@@ -11,10 +11,10 @@ exports.sourceNodes = (
   //strips special characters and makes string camelcase
   const customFormat = str => {
     return str
-      .replace(/^.*\/\/[^\/]+/, "") //Removes domain
+      .replace(/^.*\/\/[^\/]+/, '') //Removes domain
       .replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase()) //Capitalizes strings
-      .replace(/\//g, "") //Removes slashes
-      .replace(/\s+/g, "") //Removes spaces
+      .replace(/\//g, '') //Removes slashes
+      .replace(/\s+/g, '') //Removes spaces
   }
 
   // Helper function that processes a result to match Gatsby's node structure
@@ -31,6 +31,7 @@ exports.sourceNodes = (
         contentDigest: createContentDigest(result),
       },
     })
+
     return nodeData
   }
 
