@@ -14,6 +14,7 @@ exports.sourceNodes = (
       .replace(/^.*\/\/[^\/]+/, '') //Removes domain
       .replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase()) //Capitalizes strings
       .replace(/\//g, '') //Removes slashes
+      .replace(/\-+/g, '') //Removes hyphens
       .replace(/\s+/g, '') //Removes spaces
   }
 
