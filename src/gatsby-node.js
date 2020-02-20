@@ -31,40 +31,44 @@ exports.sourceNodes = (
   }
 
   const appendSources = ({ url, endpoint, prefix, method }) => {
-
     sources.push(
-      fetchData(url, { method }).then(data => {
-        if (Array.isArray(data)) { /* if fetchData returns multiple results */
-          data.forEach(result => {
+      fetchData(url, { method })
+        .then(data => {
+          if (Array.isArray(data)) {
+            /* if fetchData returns multiple results */
+            data.forEach(result => {
+              const nodeData = processResult({
+                result,
+                endpoint,
+                prefix,
+              })
+              createNode(nodeData)
+            })
+          } else {
+            // Otherwise a single result has been returned
             const nodeData = processResult({
-              result,
+              result: data,
               endpoint,
-              prefix
+              prefix,
             })
             createNode(nodeData)
-          })
-        } else { // Otherwise a single result has been returned
-          const nodeData = processResult({
-            result: data,
-            endpoint,
-            prefix
-          })
-          createNode(nodeData)
-        }
-      }).catch(error => console.log(error))
+          }
+        })
+        .catch(error => console.log(error))
     )
   }
 
   apis.forEach(api => {
-
     /* check if the api request is an object with parameters */
-    if (typeof (api) === "object") {
-      const { prefix, baseUrl, endpoints, method = "GET" } = api
+    if (typeof api === 'object') {
+      const { prefix, baseUrl, endpoints, method = 'GET' } = api
 
       /* Add some error logging if required config options are mising */
       if (!baseUrl) {
         console.log('\x1b[31m')
-        console.error("error gatsby-source-rest-api option requires the baseUrl parameter")
+        console.error(
+          'error gatsby-source-rest-api option requires the baseUrl parameter'
+        )
         console.log('')
         return
       }
@@ -73,10 +77,13 @@ exports.sourceNodes = (
       if (endpoints && endpoints.length) {
         endpoints.forEach(endpoint => {
           appendSources({
-            url: baseUrl[baseUrl.length - 1] === '/' ? `${baseUrl}${endpoint}` : `${baseUrl}/${endpoint}`,
+            url:
+              baseUrl[baseUrl.length - 1] === '/'
+                ? `${baseUrl}${endpoint}`
+                : `${baseUrl}/${endpoint}`,
             endpoint,
             prefix,
-            method
+            method,
           })
         })
         return
@@ -87,7 +94,7 @@ exports.sourceNodes = (
         url: baseUrl,
         endpoint: baseUrl,
         prefix,
-        method
+        method,
       })
       return
     }
