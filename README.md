@@ -6,7 +6,7 @@ This plugin creates nodes from Rest APIs. You can use multiple APIs at once, or 
 
 ## Install
 
-`npm install --save gatsby-source-rest-api`
+`npm install --save gatsby-source-multi-api`
 
 ## How to use
 
@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     //This plugin exists only once but can consume an array of endpoints
     {
-      resolve: 'gatsby-source-rest-api',
+      resolve: 'gatsby-source-multi-api',
       options: {
         urls: [
           ...
@@ -42,20 +42,39 @@ More complex settings can be passed as an object, giving you more control while 
 ```js
 urls: [
   {
-    prefix: "SpaceX", //Overrides default "RestApi___" - optional
-    baseUrl: "https://api.spacex.land/rest/", //the base of the rest api
-    endpoints: ["rockets", "ships", "dragon/dragon1"], //the endpoints you wish to source from the baseUrl, in the event you don't want everything available
+    prefix: "SpaceX",
+    baseUrl: "https://api.spacex.land/rest/",
+    endpoints: ["rockets", "ships", "dragon/dragon1"],
+    method: "OPTIONS",
   },
 ],
 ```
 
-## How to query
+You can exclude the endpoints array to give you more control over a single endpoint too
 
-You can query file nodes by accessing the "allRestApi___" prefixed nodes:
+```js
+urls: [
+  {
+    prefix: "SpaceX",
+    baseUrl: "https://api.spacex.land/rest/landpads",
+  },
+],
+```
+
+| **Name**  | **Type**         | **Description**                                                                                                               |
+| :-------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| prefix    | string           | `Optional` Prefix for your node. Will override the default prefix "multiApiSource[endpoint]"                                 |
+| baseUrl   | string           | `Required` The base url for your api call. This should be domain + endpoint if you choose to exclude the endpoints array      |
+| endpoints | array[string]    | `Optional` The endpoints you require for your url. baseUrl + endpoint should return json data                                 |
+| method    | string           | `Optional` For occasions where you might not want to GET request, you can specify another method.                             |
+
+## How to query GraphQL
+
+You can query file nodes by accessing the "allMultiApi" or "multiApi" prefixed nodes:
 
 ```graphql
 {
-  allRestApiYourEndpointUri {
+  allMultiApiRockets {
     edges {
       node {
         ...
@@ -83,7 +102,7 @@ There is no set results list as this is wholely dependent on the API you're quer
 
 ```graphql
 {
-  allSpaceXRockets { //customized
+  allSpaceXRockets {
     edges {
       node {
         active
