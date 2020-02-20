@@ -1,27 +1,24 @@
 # gatsby-source-rest-api
 
-A Gatsby source plugin for sourcing data into your Gatsby appliction from any REST Api
+Source data into your gatsby site from many Rest APIs at once. Get all the data you want, but remove all the uneccessary clutter.
 
-The plugin creates `RestApi` nodes from REST API sources. You can source multiple REST
-APIs at once using this plugin to get data from multiple endpoints (from a single or multiple domains).
-
-This plugin is still under development and may change dramatically until version 1.0.0 is released (stable). Use at your own risk.
+This plugin creates nodes from Rest APIs. You can use multiple APIs at once, or you can select only the endpoints you need from a single source, or do both so you can build your site with exactly the data you need.
 
 ## Install
 
-`npm install --save gatsby-source-rest-api`
+`npm install --save gatsby-source-multi-api`
 
 ## How to use
 
-```javascript
+```js
 // In your gatsby-config.js
 module.exports = {
   plugins: [
     //This plugin exists only once but can consume an array of endpoints
     {
-      resolve: 'gatsby-source-rest-api',
+      resolve: 'gatsby-source-multi-api',
       options: {
-        endpoints: [
+        urls: [
           ...
         ],
       },
@@ -32,22 +29,52 @@ module.exports = {
 
 ## Options
 
-Options accepts only an array of endpoints. You must pass at least one endpoint. Test these examples out if you wish, they will provide demo results
+Options accepts only an array of urls and you must pass at least one. The most basic form of a url is a string, which will simply fetch the data from that url.
 
-```
-endpoints: [
-  'https://jsonplaceholder.typicode.com/posts',
-  'https://jsonplaceholder.typicode.com/users',
+```js
+urls: [
+  "https://api.spacex.land/rest/capsules",
 ]
 ```
 
-## How to query
+More complex settings can be passed as an object, giving you more control while consuming your APIs.
 
-You can query file nodes like the following:
+```js
+urls: [
+  {
+    prefix: "SpaceX",
+    baseUrl: "https://api.spacex.land/rest/",
+    endpoints: ["rockets", "ships", "dragon/dragon1"],
+    method: "OPTIONS",
+  },
+],
+```
+
+You can exclude the endpoints array to give you more control over a single endpoint too
+
+```js
+urls: [
+  {
+    prefix: "SpaceX",
+    baseUrl: "https://api.spacex.land/rest/landpads",
+  },
+],
+```
+
+| **Name**  | **Type**         | **Description**                                                                                                               |
+| :-------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| prefix    | string           | `Optional` Prefix for your node. Will override the default prefix "multiApiSource[endpoint]"                                 |
+| baseUrl   | string           | `Required` The base url for your api call. This should be domain + endpoint if you choose to exclude the endpoints array      |
+| endpoints | array[string]    | `Optional` The endpoints you require for your url. baseUrl + endpoint should return json data                                 |
+| method    | string           | `Optional` For occasions where you might not want to GET request, you can specify another method.                             |
+
+## How to query GraphQL
+
+You can query file nodes by accessing the "allMultiApi" or "multiApi" prefixed nodes:
 
 ```graphql
 {
-  allRestApiYourEndpointUri {
+  allMultiApiRockets {
     edges {
       node {
         ...
@@ -57,39 +84,48 @@ You can query file nodes like the following:
 }
 ```
 
-There is no set results list as this is wholely dependent on the API you're querying. Here's an example using the data sourced from `https://jsonplaceholder.typicode.com/posts`
+If you use the optional _prefix_ setting, the node will be prefixed with your customised string. Each endpoint will be a separate node.
 
 ```graphql
 {
-  allRestApiPosts {
+  allSpaceXRockets {
+    ...
+  }
+  allSpaceXShips {
+    ...
+  }
+}
+```
+
+
+There is no set results list as this is wholely dependent on the API you're querying. Here's an example using the data sourced from `https://api.spacex.land/rest/rockets`
+
+```graphql
+{
+  allSpaceXRockets {
     edges {
       node {
-        userId
-        title
-        body
+        active
+        boosters
+        company
+        cost_per_launch
+        country
+        ...
       }
     }
   }
 }
 ```
 
-Example of filtering by the `title`. This is dependent on the API used
+## Out of scope
 
-```graphql
-{
-  allRestApiPosts(filter: { title: { eq: "qui est esse" } }) {
-    edges {
-      node {
-        title
-        body
-      }
-    }
-  }
-}
-```
+Authentication has been considered but given how diverse different authentication options can be, there's no reasonable way to apply it which will be effective across lots of different types of api's.
 
-## Todo
+## Dependencies
 
-This plugin is still a work in development and as such requires some additional features. Suggestions are welcomed.
+This package is not dependent on any external packages.
+Babel and Cross-Env are used during the build process.
 
-- Implement a way to pass keys to APIs for situations where APIs require auth
+## Contributions
+
+Code contributions or suggestions will be welcomed. I'm excited to make this plugin better and need your help to do so. If you have any ideas, or find any bugs then create an issue. If you want to make some changes then feel free to open a PR.
