@@ -30,9 +30,10 @@ exports.sourceNodes = (
     return nodeData
   }
 
-  const appendSources = ({ url, endpoint, prefix }) => {
+  const appendSources = ({ url, endpoint, prefix, method }) => {
+
     sources.push(
-      fetchData(url).then(data => {
+      fetchData(url, { method }).then(data => {
         if (Array.isArray(data)) { /* if fetchData returns multiple results */
           data.forEach(result => {
             const nodeData = processResult({
@@ -58,7 +59,7 @@ exports.sourceNodes = (
 
     /* check if the api request is an object with parameters */
     if (typeof (api) === "object") {
-      const { prefix, baseUrl, endpoints } = api
+      const { prefix, baseUrl, endpoints, method = "GET" } = api
 
       /* Add some error logging if required config options are mising */
       if (!baseUrl) {
@@ -74,7 +75,8 @@ exports.sourceNodes = (
           appendSources({
             url: baseUrl[baseUrl.length - 1] === '/' ? `${baseUrl}${endpoint}` : `${baseUrl}/${endpoint}`,
             endpoint,
-            prefix
+            prefix,
+            method
           })
         })
         return
@@ -84,7 +86,8 @@ exports.sourceNodes = (
       appendSources({
         url: baseUrl,
         endpoint: baseUrl,
-        prefix
+        prefix,
+        method
       })
       return
     }
@@ -93,7 +96,8 @@ exports.sourceNodes = (
     appendSources({
       url: api,
       endpoint: api,
-      prefix: "MultiApiSource"
+      prefix: "MultiApiSource",
+      method: "GET"
     })
   })
 
@@ -101,8 +105,8 @@ exports.sourceNodes = (
 }
 
 // Helper function to fetch data
-const fetchData = async (url) => {
-  const response = await fetch(`${url}`, {})
+const fetchData = async (url, options = {}) => {
+  const response = await fetch(`${url}`, options)
   return await response.json()
 }
 
