@@ -100,12 +100,16 @@ exports.sourceNodes = (
     }
 
     /* The default simply expects a api url as a string and no other options */
-    appendSources({
-      url: api,
-      endpoint: api,
-      prefix: "MultiApiSource",
-      method: "GET"
-    })
+    if (typeof api === 'string') {
+      if (api.length) {
+        appendSources({
+          url: api,
+          endpoint: api,
+          prefix: 'MultiApiSource',
+          method: 'GET',
+        })
+      }
+    }
   })
 
   return Promise.all(sources)
