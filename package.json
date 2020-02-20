@@ -19,9 +19,7 @@
   ],
   "author": "Dan Spratling <danspratling@hotmail.co.uk>",
   "license": "MIT",
-  "dependencies": {
-    "fetch-multiple": "^1.2.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
