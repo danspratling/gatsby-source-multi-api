@@ -1,4 +1,4 @@
-# gatsby-source-rest-api
+# gatsby-source-multi-api
 
 Source data into your gatsby site from many Rest APIs at once. Get all the data you want, but remove all the uneccessary clutter.
 
@@ -32,9 +32,7 @@ module.exports = {
 Options accepts only an array of urls and you must pass at least one. The most basic form of a url is a string, which will simply fetch the data from that url.
 
 ```js
-urls: [
-  "https://api.spacex.land/rest/capsules",
-]
+urls: ['https://api.spacex.land/rest/capsules']
 ```
 
 More complex settings can be passed as an object, giving you more control while consuming your APIs.
@@ -61,12 +59,12 @@ urls: [
 ],
 ```
 
-| **Name**  | **Type**         | **Description**                                                                                                               |
-| :-------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| prefix    | string           | `Optional` Prefix for your node. Will override the default prefix "multiApiSource[endpoint]"                                 |
-| baseUrl   | string           | `Required` The base url for your api call. This should be domain + endpoint if you choose to exclude the endpoints array      |
-| endpoints | array[string]    | `Optional` The endpoints you require for your url. baseUrl + endpoint should return json data                                 |
-| method    | string           | `Optional` For occasions where you might not want to GET request, you can specify another method.                             |
+| **Name**  | **Type**      | **Description**                                                                                                          |
+| :-------- | :------------ | :----------------------------------------------------------------------------------------------------------------------- |
+| prefix    | string        | `Optional` Prefix for your node. Will override the default prefix "multiApiSource[endpoint]"                             |
+| baseUrl   | string        | `Required` The base url for your api call. This should be domain + endpoint if you choose to exclude the endpoints array |
+| endpoints | array[string] | `Optional` The endpoints you require for your url. baseUrl + endpoint should return json data                            |
+| method    | string        | `Optional` For occasions where you might not want to GET request, you can specify another method.                        |
 
 ## How to query GraphQL
 
@@ -96,7 +94,6 @@ If you use the optional _prefix_ setting, the node will be prefixed with your cu
   }
 }
 ```
-
 
 There is no set results list as this is wholely dependent on the API you're querying. Here's an example using the data sourced from `https://api.spacex.land/rest/rockets`
 
