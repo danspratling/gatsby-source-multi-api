@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-multi-api",
-  "version": "0.2.3",
+  "version": "1.0.1",
   "description": "Source data from multiple Rest Api's & specific endpoints. See only the data you want, how you want it",
   "main": "index.js",
   "scripts": {
