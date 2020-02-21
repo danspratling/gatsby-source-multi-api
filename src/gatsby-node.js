@@ -4,7 +4,7 @@ exports.sourceNodes = (
   configOptions
 ) => {
   const { createNode } = actions
-  const { apis } = configOptions
+  const apis = configOptions.urls
 
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins
