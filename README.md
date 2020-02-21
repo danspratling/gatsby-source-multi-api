@@ -31,10 +31,10 @@ module.exports = {
 
 ## Options
 
-Options accepts only an array of urls and you must pass at least one. The most basic form of a url is a string, which will simply fetch the data from that url.
+Options accepts only an array of apis and you must pass at least one. The most basic form of an api is a url added as a string, which will simply fetch the data from that url and output it with the default settings.
 
 ```js
-urls: ['https://api.spacex.land/rest/capsules']
+apis: ['https://api.spacex.land/rest/capsules']
 ```
 
 More complex settings can be passed as an object, giving you more control while consuming your APIs.
