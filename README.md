@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-multi-api',
       options: {
-        urls: [
+        apis: [
           ...
         ],
       },
@@ -40,7 +40,7 @@ urls: ['https://api.spacex.land/rest/capsules']
 More complex settings can be passed as an object, giving you more control while consuming your APIs.
 
 ```js
-urls: [
+apis: [
   {
     prefix: "SpaceX",
     baseUrl: "https://api.spacex.land/rest/",
@@ -53,7 +53,7 @@ urls: [
 You can exclude the endpoints array to give you more control over a single endpoint too
 
 ```js
-urls: [
+apis: [
   {
     prefix: "SpaceX",
     baseUrl: "https://api.spacex.land/rest/landpads",
