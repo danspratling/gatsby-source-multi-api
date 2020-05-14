@@ -13,7 +13,7 @@ exports.sourceNodes = (
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
-    const nodeId = createNodeId(`${endpoint}-${result.id}`)
+    const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
     const nodeContent = JSON.stringify(result)
     const nodeData = Object.assign({}, result, {
       id: nodeId,
