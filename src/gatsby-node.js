@@ -9,6 +9,7 @@ exports.sourceNodes = (
   const { createTypes } = actions
   const typeDefs = `
    type multiApiSourcePeopleFaculty implements Node{
+    testData: String
     appointment: String
     bio: String
     building: String
@@ -35,6 +36,7 @@ exports.sourceNodes = (
       member_type: String
     }
     service_professional {
+      dataTest: String
       title: String
       org: String
     }
