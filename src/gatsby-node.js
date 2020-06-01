@@ -5,6 +5,75 @@ exports.sourceNodes = (
 ) => {
   const { createNode } = actions
   const { apis } = configOptions
+  
+  const { createTypes } = actions
+  const typeDefs = `
+   type multiApiSourcePeopleFaculty implements Node{
+    appointment: String
+    bio: String
+    building: String
+    consult_service: String
+    experience: String
+    grant_contract: String
+    honor_award: String
+    innovate_enterpreneur: String
+    patent_invention: String
+    pf_email: String
+    pf_work_fax: String
+    pf_first_name: String
+    pf_last_name: String
+    pf_work_phone: String
+    pf_title: String
+    pf_username: String
+    website: String
+    research: String
+    room: String
+    photo_base64: String
+    notable_courses: String
+    service_university {
+      org: String
+      member_type: String
+    }
+    service_professional {
+      title: String
+      org: String
+    }
+    education {
+      degother: String
+      dty_comp: String
+      deg: String
+      school: String
+      state: String
+      country: String
+      major: String
+    }
+    member {
+      org: String
+      status: String
+    }
+    intellcont {
+      contype: String
+      contypeother: String
+      journal_name: String
+      pagenum: String
+      status: String
+      title: String
+      volume: String
+      publisher: String
+      pubctyst: String
+      issue: String
+      dty_pub: String
+      dty_acc: String
+      dty_sub: String
+      web_address: String
+      intellcont_auth {
+        faculty_name: String
+        fname: String
+        lname: String
+      }
+   }
+  `
+  createTypes(typeDefs)
 
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins
