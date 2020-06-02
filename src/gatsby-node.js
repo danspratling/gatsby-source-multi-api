@@ -99,17 +99,16 @@ exports.sourceNodes = (
     }
   }
 
-  const nodeContent = JSON.stringify(myData)
+  const nodeContent = JSON.stringify(dummyData)
 
   const dummyNodeMeta = {
-    id: createNodeId(`my-data-${myData.key}`),
+    id: createNodeId(`PeopleFaculty-dummy`),
     parent: null,
     children: [],
     internal: {
-      type: `MyNodeType`,
-      mediaType: `text/html`,
+      type: `MultiApiSourcePeopleFaculty`,
       content: nodeContent,
-      contentDigest: createContentDigest(myData),
+      contentDigest: createContentDigest(dummyData),
     },
   }
 
