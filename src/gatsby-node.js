@@ -13,7 +13,7 @@ exports.sourceNodes = (
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
-    const nodeId = createNodeId(`${endpoint}-${result.id}`)
+    const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
     const nodeContent = JSON.stringify(result)
     const nodeData = Object.assign({}, result, {
       id: nodeId,
@@ -29,6 +29,92 @@ exports.sourceNodes = (
 
     return nodeData
   }
+
+  const dummyData = {
+    id: "dummy",
+    testData: "Hello! I am a test!",
+    appointment: "",
+    bio: "",
+    building: "",
+    consult_service: "",
+    experience: "",
+    grant_contract: "",
+    honor_award: "",
+    innovate_enterpreneur: "",
+    patent_invention: "",
+    pf_email: "",
+    pf_work_fax: "",
+    pf_first_name: "",
+    pf_last_name: "",
+    pf_work_phone: "",
+    pf_title: "",
+    pf_username: "",
+    website: "",
+    research: "",
+    room: "",
+    photo_base64: "",
+    notable_courses: "",
+    service_university: {
+      org: "",
+      member_type: "",
+    },
+    service_professional: {
+      title: "",
+      org: "",
+      dataTest: "I am a test! Hello!",
+    },
+    education: {
+      dty_comp: "",
+      deg: "",
+      degother: "",
+      school: "",
+      state: "",
+      country: "",
+      major: "",
+    },
+    member: {
+      org: "",
+      status: "",
+    },
+    intellcont: {
+      contype: "",
+      contypeother: "",
+      journal_name: "",
+      pagenum: "",
+      status: "",
+      title: "",
+      volume: "",
+      publisher: "",
+      pubctyst: "",
+      issue: "",
+      dty_pub: "",
+      dty_acc: "",
+      dty_sub: "",
+      web_address: "",
+      intellcont_auth: {
+        faculty_name: "",
+        fname: "",
+        lname: "",
+      }
+    }
+  }
+
+  const nodeContent = JSON.stringify(myData)
+
+  const dummyNodeMeta = {
+    id: createNodeId(`my-data-${myData.key}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: `MyNodeType`,
+      mediaType: `text/html`,
+      content: nodeContent,
+      contentDigest: createContentDigest(myData),
+    },
+  }
+
+  const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
+  createNode(dummyNode)
 
   const appendSources = ({ url, endpoint, prefix, method }) => {
     sources.push(
