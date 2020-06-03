@@ -34,16 +34,17 @@ exports.sourceNodes = (
     room: "",
     photo_base64: "",
     notable_courses: "",
-    service_university: {
+    school: "",
+    service_university: [{
       org: "",
       member_type: "",
-    },
-    service_professional: {
+    }],
+    service_professional: [{
       title: "",
       org: "",
       dataTest: "I am a test! Hello!",
-    },
-    education: {
+    }],
+    education: [{
       dty_comp: "",
       deg: "",
       degother: "",
@@ -51,12 +52,12 @@ exports.sourceNodes = (
       state: "",
       country: "",
       major: "",
-    },
-    member: {
+    }],
+    member: [{
       org: "",
       status: "",
-    },
-    intellcont: {
+    }],
+    intellcont: [{
       contype: "",
       contypeother: "",
       journal_name: "",
@@ -76,7 +77,7 @@ exports.sourceNodes = (
         fname: "",
         lname: "",
       }
-    }
+    }]
   }
 
   const dummyNodeContent = JSON.stringify(dummyData)
