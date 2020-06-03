@@ -104,7 +104,6 @@ exports.sourceNodes = (
   const processResult = ({ result, endpoint, prefix }) => {
     const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
     const nodeContent = JSON.stringify(result)
-    const nodeData = Object.assign({}, result, meta)
     const meta = {
       id: nodeId,
       endpointId: result.id,
@@ -116,6 +115,7 @@ exports.sourceNodes = (
         contentDigest: createContentDigest(result),
       },
     }
+    const nodeData = Object.assign({}, result, meta)
     console.log("result: " + JSON.stringify(result))
     console.log("prefix: " + prefix)
     console.log("nodeId: " + meta.id)
