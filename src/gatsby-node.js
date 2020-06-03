@@ -95,9 +95,9 @@ exports.sourceNodes = (
 
   const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
   console.log("dummy result: " + JSON.stringify(dummyData))
-  console.log("dummy nodeId: " + dummyNodeMeta[id])
-  console.log("dummy type: " +  dummyNodeMeta[internal][type])
-  console.log("dummy content: " +  dummyNodeMeta[endpointId])
+  console.log("dummy nodeId: " + dummyNodeMeta.id)
+  console.log("dummy type: " +  dummyNodeMeta.internal.type)
+  console.log("dummy content: " +  dummyNodeMeta.endpointId)
   createNode(dummyNode)
 
   // Helper function that processes a result to match Gatsby's node structure
@@ -118,9 +118,9 @@ exports.sourceNodes = (
     const nodeData = Object.assign({}, result, meta)
     console.log("result: " + JSON.stringify(result))
     console.log("prefix: " + prefix)
-    console.log("nodeId: " + meta[id])
-    console.log("type: " +  meta[internal][type])
-    console.log("content: " +  meta[endpointId])
+    console.log("nodeId: " + meta.id)
+    console.log("type: " +  meta.internal.type)
+    console.log("content: " +  meta.endpointId)
 
     return nodeData
   }
