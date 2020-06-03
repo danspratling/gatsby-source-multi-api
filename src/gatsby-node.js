@@ -10,6 +10,91 @@ exports.sourceNodes = (
   delete configOptions.plugins
 
   const sources = []
+  // const dummyData = {
+  //   id: "dummy",
+  //   testData: "Hello! I am a test!",
+  //   appointment: "",
+  //   bio: "",
+  //   building: "",
+  //   consult_service: "",
+  //   experience: "",
+  //   grant_contract: "",
+  //   honor_award: "",
+  //   innovate_enterpreneur: "",
+  //   patent_invention: "",
+  //   pf_email: "",
+  //   pf_work_fax: "",
+  //   pf_first_name: "",
+  //   pf_last_name: "",
+  //   pf_work_phone: "",
+  //   pf_title: "",
+  //   pf_username: "",
+  //   website: "",
+  //   research: "",
+  //   room: "",
+  //   photo_base64: "",
+  //   notable_courses: "",
+  //   service_university: {
+  //     org: "",
+  //     member_type: "",
+  //   },
+  //   service_professional: {
+  //     title: "",
+  //     org: "",
+  //     dataTest: "I am a test! Hello!",
+  //   },
+  //   education: {
+  //     dty_comp: "",
+  //     deg: "",
+  //     degother: "",
+  //     school: "",
+  //     state: "",
+  //     country: "",
+  //     major: "",
+  //   },
+  //   member: {
+  //     org: "",
+  //     status: "",
+  //   },
+  //   intellcont: {
+  //     contype: "",
+  //     contypeother: "",
+  //     journal_name: "",
+  //     pagenum: "",
+  //     status: "",
+  //     title: "",
+  //     volume: "",
+  //     publisher: "",
+  //     pubctyst: "",
+  //     issue: "",
+  //     dty_pub: "",
+  //     dty_acc: "",
+  //     dty_sub: "",
+  //     web_address: "",
+  //     intellcont_auth: {
+  //       faculty_name: "",
+  //       fname: "",
+  //       lname: "",
+  //     }
+  //   }
+  // }
+
+  // const nodeContent = JSON.stringify(dummyData)
+
+  // const dummyNodeMeta = {
+  //   id: createNodeId(`PeopleFaculty-dummy`),
+  //   endpointId: "dummy",
+  //   parent: null,
+  //   children: [],
+  //   internal: {
+  //     type: `MultiApiSourcePeopleFaculty`,
+  //     content: nodeContent,
+  //     contentDigest: createContentDigest(dummyData),
+  //   },
+  // }
+
+  // const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
+  // createNode(dummyNode)
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
@@ -26,94 +111,16 @@ exports.sourceNodes = (
         contentDigest: createContentDigest(result),
       },
     })
+    console.log("result: " + result)
+    console.log("endpoint: " +endpoint)
+    console.log("prefix: " + prefix)
+    console.log("nodeId: " + nodeData[id])
+    console.log("endpointId: " + nodeData[endpointId])
+    console.log("type: " +  nodeData[endpointId][type])
+    console.log("content: " +  nodeData[endpointId])
 
     return nodeData
   }
-
-  const dummyData = {
-    id: "dummy",
-    testData: "Hello! I am a test!",
-    appointment: "",
-    bio: "",
-    building: "",
-    consult_service: "",
-    experience: "",
-    grant_contract: "",
-    honor_award: "",
-    innovate_enterpreneur: "",
-    patent_invention: "",
-    pf_email: "",
-    pf_work_fax: "",
-    pf_first_name: "",
-    pf_last_name: "",
-    pf_work_phone: "",
-    pf_title: "",
-    pf_username: "",
-    website: "",
-    research: "",
-    room: "",
-    photo_base64: "",
-    notable_courses: "",
-    service_university: {
-      org: "",
-      member_type: "",
-    },
-    service_professional: {
-      title: "",
-      org: "",
-      dataTest: "I am a test! Hello!",
-    },
-    education: {
-      dty_comp: "",
-      deg: "",
-      degother: "",
-      school: "",
-      state: "",
-      country: "",
-      major: "",
-    },
-    member: {
-      org: "",
-      status: "",
-    },
-    intellcont: {
-      contype: "",
-      contypeother: "",
-      journal_name: "",
-      pagenum: "",
-      status: "",
-      title: "",
-      volume: "",
-      publisher: "",
-      pubctyst: "",
-      issue: "",
-      dty_pub: "",
-      dty_acc: "",
-      dty_sub: "",
-      web_address: "",
-      intellcont_auth: {
-        faculty_name: "",
-        fname: "",
-        lname: "",
-      }
-    }
-  }
-
-  const nodeContent = JSON.stringify(dummyData)
-
-  const dummyNodeMeta = {
-    id: createNodeId(`PeopleFaculty-dummy`),
-    parent: null,
-    children: [],
-    internal: {
-      type: `MultiApiSourcePeopleFaculty`,
-      content: nodeContent,
-      contentDigest: createContentDigest(dummyData),
-    },
-  }
-
-  const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
-  createNode(dummyNode)
 
   const appendSources = ({ url, endpoint, prefix, method }) => {
     sources.push(
