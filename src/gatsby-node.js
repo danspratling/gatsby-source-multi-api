@@ -10,96 +10,6 @@ exports.sourceNodes = (
   delete configOptions.plugins
 
   const sources = []
-  const dummyData = {
-    id: "dummy",
-    testData: "Hello! I am a test!",
-    appointment: "",
-    bio: "",
-    building: "",
-    consult_service: "",
-    experience: "",
-    grant_contract: "",
-    honor_award: "",
-    innovate_enterpreneur: "",
-    patent_invention: "",
-    pf_email: "",
-    pf_work_fax: "",
-    pf_first_name: "",
-    pf_last_name: "",
-    pf_work_phone: "",
-    pf_title: "",
-    pf_username: "",
-    website: "",
-    research: "",
-    room: "",
-    photo_base64: "",
-    notable_courses: "",
-    school: "",
-    service_university: [{
-      org: "",
-      member_type: "",
-    }],
-    service_professional: [{
-      title: "",
-      org: "",
-      dataTest: "I am a test! Hello!",
-    }],
-    education: [{
-      dty_comp: "",
-      deg: "",
-      degother: "",
-      school: "",
-      state: "",
-      country: "",
-      major: "",
-    }],
-    member: [{
-      org: "",
-      status: "",
-    }],
-    intellcont: [{
-      contype: "",
-      contypeother: "",
-      journal_name: "",
-      pagenum: "",
-      status: "",
-      title: "",
-      volume: "",
-      publisher: "",
-      pubctyst: "",
-      issue: "",
-      dty_pub: "",
-      dty_acc: "",
-      dty_sub: "",
-      web_address: "",
-      intellcont_auth: {
-        faculty_name: "",
-        fname: "",
-        lname: "",
-      }
-    }]
-  }
-
-  const dummyNodeContent = JSON.stringify(dummyData)
-
-  const dummyNodeMeta = {
-    id: createNodeId(`PeopleFaculty-dummy`),
-    endpointId: "dummy",
-    parent: null,
-    children: [],
-    internal: {
-      type: `MultiApiSourcePeopleFaculty`,
-      content: dummyNodeContent,
-      contentDigest: createContentDigest(dummyData),
-    },
-  }
-
-  const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
-  console.log("dummy result: " + JSON.stringify(dummyData))
-  console.log("dummy nodeId: " + dummyNodeMeta.id)
-  console.log("dummy type: " +  dummyNodeMeta.internal.type)
-  console.log("dummy content: " +  dummyNodeMeta.endpointId)
-  createNode(dummyNode)
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
@@ -224,3 +134,94 @@ const customFormat = str => {
     .replace(/\-+/g, '') //Removes hyphens
     .replace(/\s+/g, '') //Removes spaces
 }
+
+const dummyData = {
+  id: "dummy",
+  testData: "Hello! I am a test!",
+  appointment: "",
+  bio: "",
+  building: "",
+  consult_service: "",
+  experience: "",
+  grant_contract: "",
+  honor_award: "",
+  innovate_enterpreneur: "",
+  patent_invention: "",
+  pf_email: "",
+  pf_work_fax: "",
+  pf_first_name: "",
+  pf_last_name: "",
+  pf_work_phone: "",
+  pf_title: "",
+  pf_username: "",
+  website: "",
+  research: "",
+  room: "",
+  photo_base64: "",
+  notable_courses: "",
+  school: "",
+  service_university: [{
+    org: "",
+    member_type: "",
+  }],
+  service_professional: [{
+    title: "",
+    org: "",
+    dataTest: "I am a test! Hello!",
+  }],
+  education: [{
+    dty_comp: "",
+    deg: "",
+    degother: "",
+    school: "",
+    state: "",
+    country: "",
+    major: "",
+  }],
+  member: [{
+    org: "",
+    status: "",
+  }],
+  intellcont: [{
+    contype: "",
+    contypeother: "",
+    journal_name: "",
+    pagenum: "",
+    status: "",
+    title: "",
+    volume: "",
+    publisher: "",
+    pubctyst: "",
+    issue: "",
+    dty_pub: "",
+    dty_acc: "",
+    dty_sub: "",
+    web_address: "",
+    intellcont_auth: {
+      faculty_name: "",
+      fname: "",
+      lname: "",
+    }
+  }]
+}
+
+const dummyNodeContent = JSON.stringify(dummyData)
+
+const dummyNodeMeta = {
+  id: createNodeId(`PeopleFaculty-dummy`),
+  endpointId: "dummy",
+  parent: null,
+  children: [],
+  internal: {
+    type: `MultiApiSourcePeopleFaculty`,
+    content: dummyNodeContent,
+    contentDigest: createContentDigest(dummyData),
+  },
+}
+
+const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
+console.log("dummy result: " + JSON.stringify(dummyData))
+console.log("dummy nodeId: " + dummyNodeMeta.id)
+console.log("dummy type: " +  dummyNodeMeta.internal.type)
+console.log("dummy content: " +  dummyNodeMeta.endpointId)
+createNode(dummyNode)
