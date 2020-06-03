@@ -94,13 +94,15 @@ exports.sourceNodes = (
   }
 
   const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
+  console.log("dummy result: " + JSON.stringify(dummyData))
+  console.log("dummy nodeId: " + dummyNodeMeta[id])
+  console.log("dummy type: " +  dummyNodeMeta[internal][type])
+  console.log("dummy content: " +  dummyNodeMeta[endpointId])
   createNode(dummyNode)
 
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
-    const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
-    const nodeContent = JSON.stringify(result)
-    const nodeData = Object.assign({}, result, {
+    const meta = {
       id: nodeId,
       endpointId: result.id,
       parent: null,
@@ -110,14 +112,15 @@ exports.sourceNodes = (
         content: nodeContent,
         contentDigest: createContentDigest(result),
       },
-    })
-    console.log("result: " + result)
-    console.log("endpoint: " +endpoint)
+    }
+    const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
+    const nodeContent = JSON.stringify(result)
+    const nodeData = Object.assign({}, result, meta)
+    console.log("result: " + JSON.stringify(result))
     console.log("prefix: " + prefix)
-    console.log("nodeId: " + nodeData[id])
-    console.log("endpointId: " + nodeData[endpointId])
-    console.log("type: " +  nodeData[endpointId][type])
-    console.log("content: " +  nodeData[endpointId])
+    console.log("nodeId: " + meta[id])
+    console.log("type: " +  meta[internal][type])
+    console.log("content: " +  meta[endpointId])
 
     return nodeData
   }
