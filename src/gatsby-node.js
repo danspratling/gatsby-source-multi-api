@@ -116,8 +116,8 @@ exports.sourceNodes = (
       },
     }
     const nodeData = Object.assign({}, result, meta)
-    console.log("result: " + JSON.stringify(result))
     console.log("prefix: " + prefix)
+    console.log("result.id: " + result.id)
     console.log("nodeId: " + meta.id)
     console.log("type: " +  meta.internal.type)
     console.log("content: " +  meta.endpointId)
