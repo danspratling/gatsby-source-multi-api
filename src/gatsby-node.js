@@ -79,7 +79,7 @@ exports.sourceNodes = (
     }
   }
 
-  const nodeContent = JSON.stringify(dummyData)
+  const dummyNodeContent = JSON.stringify(dummyData)
 
   const dummyNodeMeta = {
     id: createNodeId(`PeopleFaculty-dummy`),
@@ -88,7 +88,7 @@ exports.sourceNodes = (
     children: [],
     internal: {
       type: `MultiApiSourcePeopleFaculty`,
-      content: nodeContent,
+      content: dummyNodeContent,
       contentDigest: createContentDigest(dummyData),
     },
   }
@@ -116,11 +116,6 @@ exports.sourceNodes = (
       },
     }
     const nodeData = Object.assign({}, result, meta)
-    console.log("prefix: " + prefix)
-    console.log("result.id: " + result.id)
-    console.log("nodeId: " + meta.id)
-    console.log("type: " +  meta.internal.type)
-    console.log("content: " +  meta.endpointId)
 
     return nodeData
   }
