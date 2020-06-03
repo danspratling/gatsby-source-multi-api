@@ -107,7 +107,7 @@ exports.sourceNodes = (
     const nodeContent = JSON.stringify(result)
     const meta = {
       id: nodeId,
-      endpointId: result.id,
+      endpointId: result.pf_username,
       parent: null,
       children: [],
       internal: {
@@ -117,7 +117,7 @@ exports.sourceNodes = (
       },
     }
     const nodeData = Object.assign({}, result, meta)
-    console.log("meta.type: " + meta.type)
+    console.log("meta.type: " + meta.internal.type)
     console.log("result.id: " + result.id)
     console.log("result.pf_username: " + result.pf_username)
 
