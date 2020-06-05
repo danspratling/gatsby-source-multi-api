@@ -130,10 +130,10 @@ exports.sourceNodes = (
   const appendSources = ({ url, endpoint, prefix, method }) => {
     sources.push(
       fetchData(url, { method })
-        .then((data) => {
+        .then(data => {
           if (Array.isArray(data)) {
             /* if fetchData returns multiple results */
-            data.forEach((result) => {
+            data.forEach(result => {
               const nodeData = processResult({
                 result,
                 endpoint,
@@ -151,11 +151,11 @@ exports.sourceNodes = (
             createNode(nodeData)
           }
         })
-        .catch((error) => console.log(error))
+        .catch(error => console.log(error))
     )
   }
 
-  apis.forEach((api) => {
+  apis.forEach(api => {
     /* check if the api request is an object with parameters */
     if (typeof api === 'object') {
       const { prefix, baseUrl, endpoints, method = 'GET' } = api
@@ -172,7 +172,7 @@ exports.sourceNodes = (
 
       /* object is used and endpoints are set */
       if (endpoints && endpoints.length) {
-        endpoints.forEach((endpoint) => {
+        endpoints.forEach(endpoint => {
           appendSources({
             url:
               baseUrl[baseUrl.length - 1] === '/'
@@ -219,10 +219,10 @@ const fetchData = async (url, options = {}) => {
 }
 
 //strips special characters and makes string camelcase
-const customFormat = (str) => {
+const customFormat = str => {
   return str
     .replace(/^.*\/\/[^\/]+/, '') //Removes domain
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word) => word.toUpperCase()) //Capitalizes strings
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase()) //Capitalizes strings
     .replace(/\//g, '') //Removes slashes
     .replace(/\-+/g, '') //Removes hyphens
     .replace(/\s+/g, '') //Removes spaces
