@@ -121,9 +121,6 @@ exports.sourceNodes = (
       },
     }
     const nodeData = Object.assign({}, result, meta)
-    console.log('meta.type: ' + meta.internal.type)
-    console.log('result.id: ' + result.id)
-    console.log('result.pf_username: ' + result.pf_username)
 
     return nodeData
   }
