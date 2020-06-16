@@ -82,6 +82,7 @@ exports.sourceNodes = (
         web_address: '',
         intellcont_auth: {
           faculty_name: '',
+          mname: '',
           fname: '',
           lname: '',
         },
