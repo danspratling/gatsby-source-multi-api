@@ -61,6 +61,7 @@ exports.sourceNodes = (
       {
         org: '',
         status: '',
+        orgabbr: ''
       },
     ],
     intellcont: [
