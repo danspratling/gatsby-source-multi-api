@@ -10,14 +10,109 @@ exports.sourceNodes = (
   delete configOptions.plugins
 
   const sources = []
-
+  const dummyData = {
+    id: 'dummy',
+    appointment: '',
+    bio: '',
+    building: '',
+    consult_service: '',
+    experience: '',
+    grant_contract: '',
+    honor_award: '',
+    innovate_enterpreneur: '',
+    patent_invention: '',
+    pf_email: '',
+    pf_work_fax: '',
+    pf_first_name: '',
+    pf_last_name: '',
+    pf_work_phone: '',
+    pf_title: '',
+    pf_username: '',
+    website: '',
+    research: '',
+    room: '',
+    photo_base64: '',
+    notable_courses: '',
+    school: '',
+    service_university: [
+      {
+        org: '',
+        member_type: '',
+      },
+    ],
+    service_professional: [
+      {
+        title: '',
+        org: '',
+      },
+    ],
+    education: [
+      {
+        dty_comp: '',
+        deg: '',
+        degother: '',
+        school: '',
+        state: '',
+        country: '',
+        major: '',
+      },
+    ],
+    member: [
+      {
+        org: '',
+        status: '',
+        orgabbr: ''
+      },
+    ],
+    intellcont: [
+      {
+        contype: '',
+        contypeother: '',
+        journal_name: '',
+        pagenum: '',
+        status: '',
+        title: '',
+        volume: '',
+        publisher: '',
+        pubctyst: '',
+        issue: '',
+        dty_pub: '',
+        dty_acc: '',
+        dty_sub: '',
+        web_address: '',
+        intellcont_auth: {
+          faculty_name: '',
+          mname: '',
+          fname: '',
+          lname: '',
+        },
+      },
+    ],
+  }
+  
+  const dummyNodeContent = JSON.stringify(dummyData)
+  
+  const dummyNodeMeta = {
+    id: createNodeId(`PeopleFaculty-dummy`),
+    endpointId: "dummy",
+    parent: null,
+    children: [],
+    internal: {
+      type: `MultiApiSourcePeopleFaculty`,
+      content: dummyNodeContent,
+      contentDigest: createContentDigest(dummyData),
+    },
+  }
+  
+  const dummyNode = Object.assign({}, dummyData, dummyNodeMeta)
+  createNode(dummyNode)
   // Helper function that processes a result to match Gatsby's node structure
   const processResult = ({ result, endpoint, prefix }) => {
     const nodeId = createNodeId(`${endpoint}-${result.pf_username}`)
     const nodeContent = JSON.stringify(result)
-    const nodeData = Object.assign({}, result, {
+    const meta = {
       id: nodeId,
-      endpointId: result.id,
+      endpointId: result.pf_username,
       parent: null,
       children: [],
       internal: {
@@ -25,8 +120,8 @@ exports.sourceNodes = (
         content: nodeContent,
         contentDigest: createContentDigest(result),
       },
-    })
-
+    }
+    const nodeData = Object.assign({}, result, meta)
     return nodeData
   }
 
@@ -111,7 +206,7 @@ exports.sourceNodes = (
       }
     }
   })
-
+  
   return Promise.all(sources)
 }
 
