@@ -68,7 +68,6 @@ exports.sourceNodes = (
       {
         contype: '',
         contypeother: '',
-        journal_name: '',
         pagenum: '',
         status: '',
         title: '',
@@ -81,7 +80,6 @@ exports.sourceNodes = (
         dty_sub: '',
         web_address: '',
         intellcont_auth: {
-          faculty_name: '',
           mname: '',
           fname: '',
           lname: '',
