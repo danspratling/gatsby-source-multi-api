@@ -34,6 +34,7 @@ exports.sourceNodes = (
     photo_base64: '',
     notable_courses: '',
     school: '',
+    ses_department: '',
     service_university: [
       {
         org: '',
@@ -68,7 +69,6 @@ exports.sourceNodes = (
       {
         contype: '',
         contypeother: '',
-        journal_name: '',
         pagenum: '',
         status: '',
         title: '',
@@ -81,7 +81,6 @@ exports.sourceNodes = (
         dty_sub: '',
         web_address: '',
         intellcont_auth: {
-          faculty_name: '',
           mname: '',
           fname: '',
           lname: '',
