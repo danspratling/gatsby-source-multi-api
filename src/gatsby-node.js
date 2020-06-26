@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
 exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   configOptions
@@ -30,9 +30,9 @@ exports.sourceNodes = (
     return nodeData
   }
 
-  const appendSources = ({ url, endpoint, prefix, method }) => {
+  const appendSources = ({ url, endpoint, prefix, method, headers }) => {
     sources.push(
-      fetchData(url, { method })
+      fetchData(url, { method, headers })
         .then(data => {
           if (Array.isArray(data)) {
             /* if fetchData returns multiple results */
@@ -61,7 +61,7 @@ exports.sourceNodes = (
   apis.forEach(api => {
     /* check if the api request is an object with parameters */
     if (typeof api === 'object') {
-      const { prefix, baseUrl, endpoints, method = 'GET' } = api
+      const { prefix, baseUrl, endpoints, method = 'GET', headers = {} } = api
 
       /* Add some error logging if required config options are mising */
       if (!baseUrl) {
@@ -84,6 +84,7 @@ exports.sourceNodes = (
             endpoint,
             prefix,
             method,
+            headers,
           })
         })
         return
@@ -95,6 +96,7 @@ exports.sourceNodes = (
         endpoint: baseUrl,
         prefix,
         method,
+        headers,
       })
       return
     }
