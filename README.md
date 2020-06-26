@@ -46,6 +46,7 @@ apis: [
     baseUrl: "https://api.spacex.land/rest/",
     endpoints: ["rockets", "ships", "dragon/dragon1"],
     method: "OPTIONS",
+    headers: {...}
   },
 ],
 ```
@@ -67,6 +68,7 @@ apis: [
 | baseUrl   | string        | `Required` The base url for your api call. This should be domain + endpoint if you choose to exclude the endpoints array |
 | endpoints | array[string] | `Optional` The endpoints you require for your url. baseUrl + endpoint should return json data                            |
 | method    | string        | `Optional` For occasions where you might not want to GET request, you can specify another method.                        |
+| headers    | object        | `Optional` The object follows the same api as the fetch api                            |
 
 ## How to query GraphQL
 
