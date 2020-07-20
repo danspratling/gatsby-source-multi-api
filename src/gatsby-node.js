@@ -80,11 +80,13 @@ exports.sourceNodes = (
         dty_acc: '',
         dty_sub: '',
         web_address: '',
-        intellcont_auth: {
-          mname: '',
-          fname: '',
-          lname: '',
-        },
+        intellcont_auth: [ 
+          {
+            mname: '',
+            fname: '',
+            lname: '',
+          },
+        ],
       },
     ],
   }
