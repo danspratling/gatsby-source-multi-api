@@ -1,5 +1,13 @@
 # gatsby-source-multi-api
 
+*Plugin Archived*
+
+This plugin is abandoned, and archived so it can still be used by those who wish to continue using it.
+
+I recommend switching to [gatsby-plugin-custom-api](https://www.gatsbyjs.org/packages/gatsby-source-custom-api/?=source)
+
+--
+
 Source data into your gatsby site from many Rest APIs at once. Get all the data you want, but remove all the uneccessary clutter.
 
 This plugin creates nodes from Rest APIs. You can use multiple APIs at once, or you can select only the endpoints you need from a single source, or do both so you can build your site with exactly the data you need.
